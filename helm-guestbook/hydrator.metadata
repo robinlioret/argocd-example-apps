@@ -1,6 +1,6 @@
 {
   "repoURL": "https://github.com/robinlioret/argocd-example-apps",
-  "drySha": "c1ddaa17a256042351b7781f9d49697a49ea53e4",
+  "drySha": "126d3cb723ea7ccbe300ce1346fc33a14d80a43f",
   "commands": [
     "helm template . --name-template github-promoter-test-staging --include-crds"
   ]
