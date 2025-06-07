@@ -32,7 +32,7 @@ metadata:
     release: github-promoter-test-prod
   name: github-promoter-test-prod-helm-guestbook
 spec:
-  replicas: 5
+  replicas: 1
   revisionHistoryLimit: 3
   selector:
     matchLabels:
