@@ -32,7 +32,7 @@ metadata:
     release: prodhelm-guestbook
   name: prodhelm-guestbook
 spec:
-  replicas: 2
+  replicas: 1
   revisionHistoryLimit: 3
   selector:
     matchLabels:
