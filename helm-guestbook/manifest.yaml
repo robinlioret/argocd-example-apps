@@ -2,13 +2,13 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    argocd.argoproj.io/tracking-id: github-promoter-test-staging:/Service:/github-promoter-test-staging-helm-guestbook
+    argocd.argoproj.io/tracking-id: staginghelm-guestbook:/Service:/staginghelm-guestbook
   labels:
     app: helm-guestbook
     chart: helm-guestbook-0.1.0
     heritage: Helm
-    release: github-promoter-test-staging
-  name: github-promoter-test-staging-helm-guestbook
+    release: staginghelm-guestbook
+  name: staginghelm-guestbook
 spec:
   ports:
     - name: http
@@ -17,32 +17,32 @@ spec:
       targetPort: http
   selector:
     app: helm-guestbook
-    release: github-promoter-test-staging
+    release: staginghelm-guestbook
   type: ClusterIP
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    argocd.argoproj.io/tracking-id: github-promoter-test-staging:apps/Deployment:/github-promoter-test-staging-helm-guestbook
+    argocd.argoproj.io/tracking-id: staginghelm-guestbook:apps/Deployment:/staginghelm-guestbook
   labels:
     app: helm-guestbook
     chart: helm-guestbook-0.1.0
     heritage: Helm
-    release: github-promoter-test-staging
-  name: github-promoter-test-staging-helm-guestbook
+    release: staginghelm-guestbook
+  name: staginghelm-guestbook
 spec:
-  replicas: 1
+  replicas: 2
   revisionHistoryLimit: 3
   selector:
     matchLabels:
       app: helm-guestbook
-      release: github-promoter-test-staging
+      release: staginghelm-guestbook
   template:
     metadata:
       labels:
         app: helm-guestbook
-        release: github-promoter-test-staging
+        release: staginghelm-guestbook
     spec:
       containers:
         - image: quay.io/argoprojlabs/argocd-e2e-container:0.1
