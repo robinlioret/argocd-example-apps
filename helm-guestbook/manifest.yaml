@@ -2,13 +2,13 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    argocd.argoproj.io/tracking-id: github-promoter-test-prod:/Service:/github-promoter-test-prod-helm-guestbook
+    argocd.argoproj.io/tracking-id: prodhelm-guestbook:/Service:/prodhelm-guestbook
   labels:
     app: helm-guestbook
     chart: helm-guestbook-0.1.0
     heritage: Helm
-    release: github-promoter-test-prod
-  name: github-promoter-test-prod-helm-guestbook
+    release: prodhelm-guestbook
+  name: prodhelm-guestbook
 spec:
   ports:
     - name: http
@@ -17,32 +17,32 @@ spec:
       targetPort: http
   selector:
     app: helm-guestbook
-    release: github-promoter-test-prod
+    release: prodhelm-guestbook
   type: ClusterIP
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    argocd.argoproj.io/tracking-id: github-promoter-test-prod:apps/Deployment:/github-promoter-test-prod-helm-guestbook
+    argocd.argoproj.io/tracking-id: prodhelm-guestbook:apps/Deployment:/prodhelm-guestbook
   labels:
     app: helm-guestbook
     chart: helm-guestbook-0.1.0
     heritage: Helm
-    release: github-promoter-test-prod
-  name: github-promoter-test-prod-helm-guestbook
+    release: prodhelm-guestbook
+  name: prodhelm-guestbook
 spec:
-  replicas: 1
+  replicas: 2
   revisionHistoryLimit: 3
   selector:
     matchLabels:
       app: helm-guestbook
-      release: github-promoter-test-prod
+      release: prodhelm-guestbook
   template:
     metadata:
       labels:
         app: helm-guestbook
-        release: github-promoter-test-prod
+        release: prodhelm-guestbook
     spec:
       containers:
         - image: quay.io/argoprojlabs/argocd-e2e-container:0.1
