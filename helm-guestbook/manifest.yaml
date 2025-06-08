@@ -32,7 +32,7 @@ metadata:
     release: staginghelm-guestbook
   name: staginghelm-guestbook
 spec:
-  replicas: 2
+  replicas: 1
   revisionHistoryLimit: 3
   selector:
     matchLabels:
