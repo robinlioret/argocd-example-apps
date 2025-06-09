@@ -2,6 +2,6 @@
   "repoURL": "https://github.com/robinlioret/argocd-example-apps",
   "drySha": "f529ef119e3cc68ce73c302c4c49800cfe724e07",
   "commands": [
-    "helm template . --name-template staginghelm-guestbook --include-crds"
+    "helm template . --name-template staging-helm-guestbook --include-crds"
   ]
 }

@@ -2,13 +2,13 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    argocd.argoproj.io/tracking-id: staginghelm-guestbook:/Service:/staginghelm-guestbook
+    argocd.argoproj.io/tracking-id: staging-helm-guestbook:/Service:/staging-helm-guestbook
   labels:
     app: helm-guestbook
     chart: helm-guestbook-0.1.0
     heritage: Helm
-    release: staginghelm-guestbook
-  name: staginghelm-guestbook
+    release: staging-helm-guestbook
+  name: staging-helm-guestbook
 spec:
   ports:
     - name: http
@@ -17,32 +17,32 @@ spec:
       targetPort: http
   selector:
     app: helm-guestbook
-    release: staginghelm-guestbook
+    release: staging-helm-guestbook
   type: ClusterIP
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    argocd.argoproj.io/tracking-id: staginghelm-guestbook:apps/Deployment:/staginghelm-guestbook
+    argocd.argoproj.io/tracking-id: staging-helm-guestbook:apps/Deployment:/staging-helm-guestbook
   labels:
     app: helm-guestbook
     chart: helm-guestbook-0.1.0
     heritage: Helm
-    release: staginghelm-guestbook
-  name: staginghelm-guestbook
+    release: staging-helm-guestbook
+  name: staging-helm-guestbook
 spec:
   replicas: 1
   revisionHistoryLimit: 3
   selector:
     matchLabels:
       app: helm-guestbook
-      release: staginghelm-guestbook
+      release: staging-helm-guestbook
   template:
     metadata:
       labels:
         app: helm-guestbook
-        release: staginghelm-guestbook
+        release: staging-helm-guestbook
     spec:
       containers:
         - image: quay.io/argoprojlabs/argocd-e2e-container:0.1
