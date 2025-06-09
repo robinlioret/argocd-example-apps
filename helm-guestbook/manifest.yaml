@@ -2,13 +2,13 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    argocd.argoproj.io/tracking-id: prodhelm-guestbook:/Service:/prodhelm-guestbook
+    argocd.argoproj.io/tracking-id: prod-helm-guestbook:/Service:/prod-helm-guestbook
   labels:
     app: helm-guestbook
     chart: helm-guestbook-0.1.0
     heritage: Helm
-    release: prodhelm-guestbook
-  name: prodhelm-guestbook
+    release: prod-helm-guestbook
+  name: prod-helm-guestbook
 spec:
   ports:
     - name: http
@@ -17,32 +17,32 @@ spec:
       targetPort: http
   selector:
     app: helm-guestbook
-    release: prodhelm-guestbook
+    release: prod-helm-guestbook
   type: ClusterIP
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    argocd.argoproj.io/tracking-id: prodhelm-guestbook:apps/Deployment:/prodhelm-guestbook
+    argocd.argoproj.io/tracking-id: prod-helm-guestbook:apps/Deployment:/prod-helm-guestbook
   labels:
     app: helm-guestbook
     chart: helm-guestbook-0.1.0
     heritage: Helm
-    release: prodhelm-guestbook
-  name: prodhelm-guestbook
+    release: prod-helm-guestbook
+  name: prod-helm-guestbook
 spec:
   replicas: 1
   revisionHistoryLimit: 3
   selector:
     matchLabels:
       app: helm-guestbook
-      release: prodhelm-guestbook
+      release: prod-helm-guestbook
   template:
     metadata:
       labels:
         app: helm-guestbook
-        release: prodhelm-guestbook
+        release: prod-helm-guestbook
     spec:
       containers:
         - image: quay.io/argoprojlabs/argocd-e2e-container:0.1
